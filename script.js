@@ -1,23 +1,44 @@
 let listeMots = ["Cachalot", "Pétunia", "Serviette"]
+let listePhrases = ["Pas de panique !", "La vie, l’univers et le reste", "Merci pour le poisson"]
 let score = 0
 
-let motUtilisateur = prompt("Entrez le mot : " +listeMots[0])
+let choix = prompt("Avec quelle liste désirez-vous jouer : 'mots' ou 'phrases' ?")
 
-if (motUtilisateur ===  listeMots[0]) {
-        score ++
+while (choix == ! "mots" && choix == ! "mots") {
+    choix = prompt("Avec quelle liste désirez-vous jouer : 'mots' ou 'phrases' ?")
 }
 
-motUtilisateur = prompt("Entrez le mot : " +listeMots[1])
 
-if (motUtilisateur ===  listeMots[1]) {
-        score ++
+if (choix === "mots") {
+    for (let i = 0; i < listeMots.length; i++) {
+
+        let motUtilisateur = prompt("Entrez le mot : " + listeMots[i])
+
+        if (motUtilisateur === listeMots[i]) {
+            score++
+        }
+    }
+
+console.log("Votre score est de : " + score)
+} 
+
+else {
+
+    if (choix === "phrases") {
+        for (let i = 0; i < listePhrases.length; i++) {
+
+            let phraseUtilisateur = prompt("Entrez la phrases : " + listePhrases[i])
+
+            if (phraseUtilisateur === listePhrases[i]) {
+                score++
+            }
+
+        }
+
+        console.log("Votre score est de : " + score)
+    }
 }
 
-motUtilisateur = prompt("Entrez le mot : " +listeMots[2])
 
-if (motUtilisateur ===  listeMots[2]) {
-        score ++
-}
 
-console.log("Votre score est de " + score + " sur 3")
 
