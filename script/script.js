@@ -1,44 +1,47 @@
 function afficherResultat(score, nbMotsProposes){
-    console.log('Votre score est de ' +score+ ' sur ' +nbMotsProposes)
+
+    let balisezoneScoreSpan = document.querySelector(".zoneScore span")
+    
+    let affichageScore = `${score} / ${nbMotsProposes} `
+   
+    balisezoneScoreSpan.innerText = affichageScore
 }
 
 
-function choisirPhrasesOuMots(){
-    let choix = prompt("Avec quelle liste désirez-vous jouer : 'mots' ou 'phrases' ?")
+function afficherProposition(proposition){
+    let balisezoneProposition = document.querySelector(".zoneProposition");
 
-    while (choix == ! "mots" && choix == ! "mots") {
-        choix = prompt("Avec quelle liste désirez-vous jouer : 'mots' ou 'phrases' ?")
-    }
-    return choix
-}
-
-function lancerBoucleDeJeu(listePropositions){
-    let score = 0
-    for (let i = 0; i < listePropositions.length; i++) {
-
-        let motUtilisateur = prompt("Entrez le mot : " + listePropositions[i])
-
-        if (motUtilisateur === listePropositions[i]) {
-            score++
-        }
-    }
-    return score
+    balisezoneProposition.innerText = proposition
 }
 
 function lancerLeJeu(){
-    let choix = choisirPhrasesOuMots()
     let score = 0
-    let nbMotsProposes = 0
+    let i = 0
 
-    if(choix === "mots"){
-        score = lancerBoucleDeJeu(listeMots)
-        nbMotsProposes= listeMots.length
-    } else {
-        score = lancerBoucleDeJeu(listePhrases)
-        nbMotsProposes= listePhrases.length
-    }
+    
+    let btnValidation = document.getElementById("btnValiderMot")
+    let zoneEcriture = document.getElementById("inputEcriture")
+    afficherProposition(listeMots[i])
+    btnValidation.addEventListener("click", () => {
+        if ( zoneEcriture.value === listeMots[i] ){
+            score ++
+            console.log=(score)
+        }
+        i++
+        afficherResultat(score,i)
+        zoneEcriture.value = ''
+        if (listeMots[i] === undefined) {
+            afficherProposition("Le jeu est fini")
+            btnValidation.disabled = true
+        } else {
+            afficherProposition(listeMots[i])
+        }
 
-    afficherResultat(score,nbMotsProposes)
+    })
+
+    afficherResultat(score,i)
 }
 
+
+console.log(zoneEcriture)
 
